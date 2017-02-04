@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      *{
+        padding:10px;
+        text-align: center;
+        margin: auto;
+      }
+      body{
+      width:1500px;
+      min-height:900px;
+      height: auto;
+      border: 8px solid purple;
+      border-radius: 32px;
+      padding-left:50px;
+      padding-top:100px;
+      padding-bottom:100px;
+      background: linear-gradient(-45deg, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 51%,rgba(213,235,251,1) 100%);
+      }
+      h1{
+        font-size: 60px;
+        color: green;
+      }
+      h2{
+        font-size: 35px;
+        font-style: italic;
+        color: darkred;
+      }
+      h3{
+        font-size: 30px;
+        font-style: italic;
+        color: black;
+      }
+      .clickables{
+        position: absolute; left:1400px; top: 50px;
+        font-size:30px;
+      }
+      .photoblock{
+        padding:0px;
+        margin: 0px;
+        height:200px;
+        width:200px;
+        border:5px dashed orange;
+      }
+      .tome{
+        width: 500px;
+        min-height: 200px;
+        height: auto;
+        overflow: scroll;
+        border: 5px solid orange;
+        margin-bottom: 50px;
+      }
+      .byme{
+        width: 1200px;
+        height: 400px;
+        overflow: scroll;
+        border: 5px solid green;
+        margin-bottom: 50px;
+      }
+      th{
+        font-size:26px;
+        font-weight: bolder;
+      }
+      tr{
+        font-size:22px;
+        color: navy
+      }
+      img{
+        margin:0px;
+        padding:0px;
+        width:100%;
+        height:100%;
+      }
+      #blonde{
+        position: absolute; left:150px; top:50px;
+        border: 3px solid orange;
+        width: 120px;
+        height: 120px;
+      }
+      #asian{
+        position: absolute; left:300px; top:50px;
+        border: 3px solid orange;
+        width: 120px;
+        height: 120px;
+      }
+      #latina{
+        position: absolute; left:450px; top:50px;
+        border: 3px solid orange;
+        width: 120px;
+        height: 120px;
+      }
+      #twins{
+        position: absolute; left:600px; top:50px;
+        border: 3px solid orange;
+        width: 120px;
+        height: 120px;
+      }
+    </style>
+    <meta charset="utf-8">
+    {% load staticfiles %}
+    <title>pokes</title>
+  </head>
+  <body>
+    <h1>Hello, {{request.session.user_name}}!</h1>
+    <h2>{{x}} people poked you!</h2>
+    <div class="tome">
+      {% if thing %}
+        {% for t in thing %}
+          <h3>{{t.0.name}} poked you {{t.1}} times</h3>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <table class="byme">
+      <tr>
+        <th><u>Name</u></th>
+        <th><u>Alias</u></th>
+        <th><u>Email Address</u></th>
+        <th><u>Poke History</u></th>
+        <th><u>Action</u></th>
+      </tr>
+      {% if otherthing %}
+        {% for o in otherthing %}
+          <tr>
+            <td>{{o.0.name}}</td>
+            <td>{{o.0.alias}}</td>
+            <td>{{o.0.email}}</td>
+            <td>{{o.1}}</td>
+            <td><a href = "/addpoke/{{o.0.id}}">Poke</a></td>
+          </tr>
+        {% endfor %}
+      {% endif %}
+    </table>
+    <div class="clickables">
+      <a href="logout">Logout</a>
+    </div>
+    <div id="blonde" ><img src="/static/belt5/images/poke1.png" alt="ang"></div>
+    <div id="asian"><img src="/static/belt5/images/poke2.png" alt="dome"></div>
+    <div id="latina"><img src="/static/belt5/images/poke3.png" alt="krem"></div>
+    <div id="twins"><img src="static/belt5/images/poke4.png" alt="wall"></div>
+  </body>
+</html>
